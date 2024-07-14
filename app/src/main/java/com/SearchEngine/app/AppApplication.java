@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@ComponentScan(basePackages = "com.SearchEngine.app")
 //@EnableJpaRepositories(basePackages = "com.SearchEngine.app.repository")
 //@EntityScan(basePackages = "com.SearchEngine.app.entity")
+
 public class AppApplication {
 
 	public static void main(String[] args) {
