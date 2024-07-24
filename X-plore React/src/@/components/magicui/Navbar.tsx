@@ -8,12 +8,12 @@ export const Navbar = () => {
 
                 <div className="hidden sm:flex gap-2 sm:gap-4 pr-4 sm:pr-10 md:pr-20 lg:pr-40">
                     <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
-                        <span className="border border-gray-300 rounded-[.5rem] p-2 text-sm">
+                        <span className="border border-gray-400 rounded-[.5rem] p-2 text-sm">
                             Login
                         </span>
                     </div>
                     <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
-                        <span className="border border-gray-300 rounded-[.5rem] p-2 text-sm">
+                        <span className="border border-gray-400 rounded-[.5rem] p-2 text-sm">
                             SignUp
                         </span>
                     </div>
