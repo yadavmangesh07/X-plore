@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 const Quote = () => {
   return (
     <>
-      <div className="  mt-[3rem] p-8 w-full h-auto flex flex-col justify-center items-center">
+      <div className=" mt-[3rem] p-8 w-full h-auto flex flex-col justify-center items-center">
         <h1 className="text-2xl pb-3  text-center sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-[-0.8rem]  font-light bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text outline-1">
           Your Search, Our Expertise.
         </h1>

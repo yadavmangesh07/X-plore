@@ -5,12 +5,13 @@ import img from './assets/beams-basic-transparent.png';
 import Quote from './@/components/magicui/Quote';
 import Footer from './@/components/magicui/Footer';
 import Globe from './@/components/magicui/globe';
+import Particles from './@/components/magicui/particles';
 
 function App() {
   return (
     <>
     <div
-      className="absolute h-screen w-screen overflow-hidden"
+      className=" h-screen w-screen overflow-hidden"
       style={{
         backgroundImage: `url(${img})`,
         backgroundPosition:'bottom',
@@ -19,7 +20,6 @@ function App() {
         transform: 'rotate(360deg)',
       }}
     >
-      
       <Globe/>
       <nav>
         <Navbar />
@@ -27,6 +27,7 @@ function App() {
       <main>
         <Quote />
       </main>
+      <Particles />
     <footer>
       <Footer/>
     </footer>
