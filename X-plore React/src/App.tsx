@@ -36,13 +36,13 @@ function App() {
             }
           />
           <Route path="/sign-in" element={
-            <div className='h-screen flex justify-center mt-[5rem]'>
+            <div className='h-screen flex justify-center mt-[3rem] lg:mt-[5rem]'>
 
               <SignIn  fallbackRedirectUrl={"/dashboard"} />
             </div>
             } />
           <Route path="/sign-up" element={
-                        <div className='h-screen flex justify-center mt-[3rem]'>
+                        <div className='h-screen flex justify-center mt-[1rem] lg:mt-[2rem]'>
 
             <SignUp fallbackRedirectUrl={"/dashboard"}/>
             </div>} />
