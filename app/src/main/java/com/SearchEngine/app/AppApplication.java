@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppApplication {
 	@GetMapping("/")
 	public String home() {
-		return "Hello Welcome to Search Engine";
+		return "Hello Welcome to Xplore";
 	}
 
 	public static void main(String[] args) {
