@@ -59,7 +59,7 @@ export const Navbar = () => {
                         <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
                             <Link to="/profile">
                                 <span >
-                                   <UserButton/>
+                                   <UserButton showName={true}/>
                                 </span>
                             </Link>
                         </div>
