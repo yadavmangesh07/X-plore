@@ -6,12 +6,29 @@ import { useUser } from '@clerk/clerk-react';
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const navigate = useNavigate();
-  const { isSignedIn } = useUser(); // Access user authentication status
+  const { user, isSignedIn } = useUser();
 
-  const handleSearch = () => {
-    if (isSignedIn) {
+  const handleSearch = async () => {
+    if (isSignedIn && user) {
       if (query.trim()) {
-        navigate(`/search-results?q=${encodeURIComponent(query)}`);
+        try {
+          // Send search query to the backend to save search history
+          await fetch('/api/search-histories', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: user.id,
+              query: query.trim(),
+            }),
+          });
+
+          // Navigate to search results page
+          navigate(`/search-results?q=${encodeURIComponent(query)}`);
+        } catch (error) {
+          console.error('Error saving search history:', error);
+        }
       }
     } else {
       navigate('/sign-in'); // Redirect to login if not signed in

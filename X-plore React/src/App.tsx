@@ -10,7 +10,8 @@ import Globe from './@/components/magicui/globe';
 import Particles from './@/components/magicui/particles';
 import Dashboard from './@/components/Dashboard';
 import SearchBar from './@/components/magicui/SearchBar'; 
-import Response from './@/components/Responses';   // Import Response
+import Response from './@/components/Responses';
+import SearchHistory from './@/components/SearchHistory';
 
 function App() {
   return (
@@ -73,6 +74,14 @@ function App() {
             element={
               <div className='h-screen flex justify-center mt-[3rem]'>
                 <Response />
+              </div>
+            }
+          />
+         <Route
+            path="/search-history"
+            element={
+              <div className='h-screen flex justify-center mt-[3rem]'>
+                <SearchHistory />
               </div>
             }
           />

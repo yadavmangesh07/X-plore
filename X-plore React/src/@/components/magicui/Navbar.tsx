@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {  SignedIn, SignedOut,UserButton } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-   
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -57,14 +56,15 @@ export const Navbar = () => {
 
                     <SignedIn>
                         <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
-                            <Link to="/profile">
-                                <span >
-                                   <UserButton showName={true}/>
+                            <UserButton showName={true} />
+                        </div>
+                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
+                            <Link to="/search-history">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                    History
                                 </span>
                             </Link>
                         </div>
-
-                       
                     </SignedIn>
                 </div>
             </nav>
