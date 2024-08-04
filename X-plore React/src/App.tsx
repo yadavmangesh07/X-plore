@@ -40,7 +40,7 @@ function App() {
             path="/sign-in"
             element={
               <div className='h-screen flex justify-center mt-[3rem] lg:mt-[5rem]'>
-                <SignIn fallbackRedirectUrl={"/dashboard"} />
+                <SignIn fallbackRedirectUrl={"/"} />
               </div>
             }
           />
@@ -48,7 +48,7 @@ function App() {
             path="/sign-up"
             element={
               <div className='h-screen flex justify-center mt-[1rem] lg:mt-[2rem]'>
-                <SignUp fallbackRedirectUrl={"/dashboard"} />
+                <SignUp fallbackRedirectUrl={"/"} />
               </div>
             }
           />

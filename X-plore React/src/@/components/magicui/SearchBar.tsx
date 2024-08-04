@@ -1,14 +1,20 @@
 import img from '../../../assets/search.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const navigate = useNavigate();
+  const { isSignedIn } = useUser(); // Access user authentication status
 
   const handleSearch = () => {
-    if (query.trim()) {
-      navigate(`/search-results?q=${encodeURIComponent(query)}`);
+    if (isSignedIn) {
+      if (query.trim()) {
+        navigate(`/search-results?q=${encodeURIComponent(query)}`);
+      }
+    } else {
+      navigate('/sign-in'); // Redirect to login if not signed in
     }
   };
 
