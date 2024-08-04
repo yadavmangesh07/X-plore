@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {  SignedIn, SignedOut,UserButton } from '@clerk/clerk-react';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+   
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -35,21 +37,35 @@ export const Navbar = () => {
                 </div>
 
                 <div className={`sm:flex ${isOpen ? 'flex' : 'hidden'} flex-row sm:flex-row gap-2 sm:gap-4 pr-4 sm:pr-10 md:pr-20 lg:pr-40`}>
-                    <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
-                        <Link to="/sign-in">
-                            <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
-                                Login
-                            </span>
-                        </Link>
-                    </div>
+                    <SignedOut>
+                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
+                            <Link to="/sign-in">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                    Login
+                                </span>
+                            </Link>
+                        </div>
 
-                    <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
-                        <Link to="/sign-up">
-                            <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
-                                SignUp
-                            </span>
-                        </Link>
-                    </div>
+                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
+                            <Link to="/sign-up">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                    SignUp
+                                </span>
+                            </Link>
+                        </div>
+                    </SignedOut>
+
+                    <SignedIn>
+                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
+                            <Link to="/profile">
+                                <span >
+                                   <UserButton/>
+                                </span>
+                            </Link>
+                        </div>
+
+                       
+                    </SignedIn>
                 </div>
             </nav>
         </div>
