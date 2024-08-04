@@ -1,7 +1,5 @@
-
 package com.SearchEngine.app.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +12,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.SearchEngine.app.entity.Resource;
-import com.SearchEngine.app.entity.SearchHistory;
-import com.SearchEngine.app.service.SearchService;
+
 import com.SearchEngine.app.service.SearchHistoryService;
+import com.SearchEngine.app.service.SearchService;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/search")
-
 public class SearchController {
 
     @Autowired
     private SearchService searchService;
 
     @Autowired
-    private SearchHistoryService searchHistoryService;
+    private SearchHistoryService searchHistoryService; // Inject SearchHistoryService
 
     // For JSP views
     @GetMapping
-    public String search(@RequestParam String query, Model model) {
+    public String search(@RequestParam String query, @RequestParam(required = false) String userId, Model model) {
         List<Resource> results = searchService.search(query);
         if (results.isEmpty()) {
             model.addAttribute("noResultsMessage", "No results found for your search query.");
@@ -40,19 +37,23 @@ public class SearchController {
             model.addAttribute("results", results);
         }
         
-        // Save search history
-        saveSearchHistory(query);
+        // Save search history if userId is present
+        if (userId != null && !userId.isEmpty()) {
+            saveSearchHistory(userId, query);
+        }
         
         return "searchResults"; 
     }
 
     // For JSON responses
     @GetMapping("/api")
-    public ResponseEntity<List<Resource>> searchApi(@RequestParam String query) {
+    public ResponseEntity<List<Resource>> searchApi(@RequestParam String query, @RequestParam(required = false) String userId) {
         List<Resource> results = searchService.search(query);
         
-        // Save search history
-        saveSearchHistory(query);
+        // Save search history if userId is present
+        if (userId != null && !userId.isEmpty()) {
+            saveSearchHistory(userId, query);
+        }
         
         return ResponseEntity.ok(results);
     }
@@ -64,8 +65,7 @@ public class SearchController {
     }
 
     // Method to save search history
-    private void saveSearchHistory(String query) {
-        SearchHistory searchHistory = new SearchHistory(query, new Date());
-        searchHistoryService.saveSearchHistory(searchHistory);
+    private void saveSearchHistory(String userId, String query) {
+        searchHistoryService.saveSearchHistory(userId, query);
     }
 }

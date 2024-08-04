@@ -1,6 +1,9 @@
 package com.SearchEngine.app.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,40 +15,61 @@ import jakarta.persistence.Id;
 public class SearchHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Use Long for ID if you are using auto-increment
+    private Long id;
 
-    private String searchQuery;
-    private Date searchDate;
+    private String userId;
+    private String query;
 
-    public SearchHistory() {
-    }
+    @CreationTimestamp
+    private Timestamp createdAt;
 
-    public SearchHistory(String searchQuery, Date searchDate) {
-        this.searchQuery = searchQuery;
-        this.searchDate = searchDate;
-    }
+	public SearchHistory() {
+		super();
+		
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public SearchHistory(Long id, String userId, String query, Timestamp createdAt) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.query = query;
+		this.createdAt = createdAt;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getSearchQuery() {
-        return searchQuery;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public Date getSearchDate() {
-        return searchDate;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public void setSearchDate(Date searchDate) {
-        this.searchDate = searchDate;
-    }
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+    
+    
+    
+
+    // Getters and setters
 }
