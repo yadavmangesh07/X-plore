@@ -13,6 +13,6 @@ public class SearchService {
     private ResourceRepository resourceRepository;
 
     public List<Resource> search(String query) {
-        return resourceRepository.findByTitleContainingOrDescriptionContaining(query, query);
+        return resourceRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query);
     }
 }
