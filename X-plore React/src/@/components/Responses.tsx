@@ -22,7 +22,7 @@ const Response: React.FC = () => {
       const fetchResults = async () => {
         setLoading(true);
         try {
-          const response = await axios.get<Resource[]>(`http://localhost:8080/search/api?query=${query}`);
+          const response = await axios.get<Resource[]>(`https://x-plore-production.up.railway.app/search/api?query=${query}`);
           setResults(response.data);
           setError('');
         } catch (error) {

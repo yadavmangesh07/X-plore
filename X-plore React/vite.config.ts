@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080', // Adjust this to your Spring Boot server's address
+        target: 'https://x-plore-production.up.railway.app', 
         changeOrigin: true,
         secure: false,
       },
