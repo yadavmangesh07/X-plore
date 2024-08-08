@@ -8,8 +8,11 @@ interface Resource {
   url: string;
   description: string;
 }
+const backendAddress=import.meta.env.VITE_BACKEND_HOST_ADDRESS;
+  console.log(backendAddress);
 
 const Response: React.FC = () => {
+  
   const [results, setResults] = useState<Resource[]>([]);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +25,7 @@ const Response: React.FC = () => {
       const fetchResults = async () => {
         setLoading(true);
         try {
-          const response = await axios.get<Resource[]>(`https://x-plore-production.up.railway.app/search/api?query=${query}`);
+          const response = await axios.get<Resource[]>(`${backendAddress}/search/api?query=${query}`);
           setResults(response.data);
           setError('');
         } catch (error) {
