@@ -12,24 +12,22 @@ const SearchHistory: React.FC = () => {
   useEffect(() => {
     if (user?.id) {
       setLoading(true);
-      fetch(`/api/search-histories?userId=${user.id}`)
+      fetch(`http://localhost:5001/api/search-histories?userId=${user.id}`)
         .then(async response => {
-          console.log('Response Headers:', response.headers.get('content-type'));
-          console.log('Response:', response);
+          console.log('Response status:', response.status);
+          console.log('Response headers:', response.headers.get('content-type'));
 
-          if (response.ok && response.headers.get('content-type')?.includes('application/json')) {
+          if (response.ok) {
             try {
               const data = await response.json();
+              console.log('Fetched data:', data); // Log the data for debugging
               setSearchHistories(data);
             } catch (jsonError) {
-              if (jsonError instanceof Error) {
-                throw new Error('Error parsing JSON: ' + jsonError.message);
-              } else {
-                throw new Error('Unknown error parsing JSON');
-              }
+              console.error('Error parsing JSON:', jsonError);
+              setError('Error parsing search history data.');
             }
           } else {
-            throw new Error('Invalid response format');
+            setError('Failed to fetch search history.');
           }
         })
         .catch(error => {
@@ -48,19 +46,9 @@ const SearchHistory: React.FC = () => {
 
   return (
     <div className="p-1 text-white overflow-scroll">
-      <h2 className="text-2xl font-bold mb-4 text-center ">Search History</h2>
-
-      {loading && (
-        <div className="flex justify-center items-center">
-          <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
-        </div>
-      )}
-
-      {!loading && (
-        <>
-          <button
+      <button
             onClick={handleGoBack}
-            className="bg-gradient-to-r from-neutral-400 to-stone-500 text-white p-3 rounded-full mb-4 hover:opacity-90 transition-opacity duration-300 flex  "
+            className="  bg-gradient-to-r from-neutral-400 to-stone-500 text-white p-3 rounded-full mb-4 hover:opacity-90 transition-opacity duration-300 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +65,25 @@ const SearchHistory: React.FC = () => {
               />
             </svg>
           </button>
+          
+      <h2 className="text-2xl font-bold mb-4 text-center">Search History</h2>
+
+      {loading && (
+        <div className="flex justify-center items-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+        </div>
+      )}
+
+      {!loading && (
+        <>
+          
 
           {error && <p className="text-red-500">{error}</p>}
 
           {searchHistories.length === 0 ? (
             <p>No search history available.</p>
           ) : (
-            <table className="min-w-full bg-gray-800 border border-white rounded-xl  shadow-lg bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text ">
+            <table className="min-w-full bg-gray-800 border border-white rounded-xl shadow-lg bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text overflow-hidden">
               <thead>
                 <tr className="bg-gray-700 text-white">
                   <th className="py-2 px-4 border-b">Searched</th>
@@ -92,9 +92,9 @@ const SearchHistory: React.FC = () => {
               </thead>
               <tbody>
                 {searchHistories.map(history => (
-                  <tr key={history.id}>
+                  <tr key={history._id}>
                     <td className="py-2 px-4 border-b text-center">{history.query}</td>
-                    <td className="py-2 px-4 border-b text-center">{new Date(history.createdAt).toLocaleString()}</td>
+                    <td className="py-2 px-4 border-b text-center">{new Date(history.timestamp).toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>

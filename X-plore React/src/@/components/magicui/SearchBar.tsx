@@ -12,8 +12,8 @@ const SearchBar: React.FC = () => {
     if (isSignedIn && user) {
       if (query.trim()) {
         try {
-          // Send search query to the backend to save search history
-          await fetch('/api/search-histories', {
+          // Replace with your deployed backend service URL
+          await fetch('http://localhost:5001/api/search-histories', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
