@@ -12,26 +12,20 @@ const SearchHistory: React.FC = () => {
   useEffect(() => {
     if (user?.id) {
       setLoading(true);
-      fetch(`http://localhost:5001/api/search-histories?userId=${user.id}`)
+      fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user.id}`)
         .then(async response => {
-          console.log('Response status:', response.status);
-          console.log('Response headers:', response.headers.get('content-type'));
-
           if (response.ok) {
             try {
               const data = await response.json();
-              console.log('Fetched data:', data); // Log the data for debugging
               setSearchHistories(data);
             } catch (jsonError) {
-              console.error('Error parsing JSON:', jsonError);
               setError('Error parsing search history data.');
             }
           } else {
             setError('Failed to fetch search history.');
           }
         })
-        .catch(error => {
-          console.error('Error fetching search histories:', error);
+        .catch(() => {
           setError('Failed to fetch search history. Please try again later.');
         })
         .finally(() => {
@@ -45,28 +39,36 @@ const SearchHistory: React.FC = () => {
   };
 
   return (
-    <div className="p-1 text-white overflow-scroll">
-      <button
-            onClick={handleGoBack}
-            className="  bg-gradient-to-r from-neutral-400 to-stone-500 text-white p-3 rounded-full mb-4 hover:opacity-90 transition-opacity duration-300 "
+    <div className="p-4 text-white flex flex-col items-center w-full">
+      <div className='w-full max-w-[90vw] mt-0 flex justify-between items-center'>
+        <button
+          onClick={handleGoBack}
+          className="hidden sm:inline-block bg-gradient-to-r from-neutral-400 to-stone-500 text-white p-3 rounded-full mb-4 hover:opacity-90 transition-opacity duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-4 h-4"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          
-      <h2 className="text-2xl font-bold mb-4 text-center">Search History</h2>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">
+          Search History
+        </h2>
+        
+        <span className="border border-gray-400 rounded-[.5rem] p-1.5 mb-[1rem] sm:p-2 text-xs sm:text-sm cursor-pointer hover:bg-gray-200 transition-colors">
+          Clear History
+        </span>
+      </div>
 
       {loading && (
         <div className="flex justify-center items-center">
@@ -76,29 +78,29 @@ const SearchHistory: React.FC = () => {
 
       {!loading && (
         <>
-          
-
           {error && <p className="text-red-500">{error}</p>}
 
           {searchHistories.length === 0 ? (
-            <p>No search history available.</p>
+            <p className='mt-4 text-center'>Nothing to show.</p>
           ) : (
-            <table className="min-w-full bg-gray-800 border border-white rounded-xl shadow-lg bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text overflow-hidden">
-              <thead>
-                <tr className="bg-gray-700 text-white">
-                  <th className="py-2 px-4 border-b">Searched</th>
-                  <th className="py-2 px-4 border-b">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {searchHistories.map(history => (
-                  <tr key={history._id}>
-                    <td className="py-2 px-4 border-b text-center">{history.query}</td>
-                    <td className="py-2 px-4 border-b text-center">{new Date(history.timestamp).toLocaleString()}</td>
+            <div className="w-[70vw] overflow-x-auto rounded-xl border ">
+              <table className="min-w-full bg-gray-800 border border-white rounded-xl shadow-lg bg-gradient-to-r from-neutral-300 to-stone-400 text-transparent bg-clip-text overflow-hidden">
+                <thead>
+                  <tr className="bg-gray-700 text-white">
+                    <th className="py-2 px-4 border-b text-left">Searched</th>
+                    <th className="py-2 px-4 border-b text-left">Date</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {searchHistories.map(history => (
+                    <tr key={history._id}>
+                      <td className="py-2 px-4 border-b">{history.query}</td>
+                      <td className="py-2 px-4 border-b">{new Date(history.timestamp).toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </>
       )}

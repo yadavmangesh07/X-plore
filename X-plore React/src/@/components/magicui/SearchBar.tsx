@@ -13,7 +13,7 @@ const SearchBar: React.FC = () => {
       if (query.trim()) {
         try {
           // Replace with your deployed backend service URL
-          await fetch('http://localhost:5001/api/search-histories', {
+          await fetch('https://x-plore.onrender.com/api/search-histories', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.SearchEngine.app.entity.Resource;
 
-import com.SearchEngine.app.service.SearchHistoryService;
 import com.SearchEngine.app.service.SearchService;
 
 @Controller
@@ -24,8 +23,6 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @Autowired
-    private SearchHistoryService searchHistoryService; // Inject SearchHistoryService
 
     // For JSP views
     @GetMapping
@@ -37,10 +34,7 @@ public class SearchController {
             model.addAttribute("results", results);
         }
         
-        // Save search history if userId is present
-        if (userId != null && !userId.isEmpty()) {
-            saveSearchHistory(userId, query);
-        }
+        
         
         return "searchResults"; 
     }
@@ -50,10 +44,8 @@ public class SearchController {
     public ResponseEntity<List<Resource>> searchApi(@RequestParam String query, @RequestParam(required = false) String userId) {
         List<Resource> results = searchService.search(query);
         
-        // Save search history if userId is present
-        if (userId != null && !userId.isEmpty()) {
-            saveSearchHistory(userId, query);
-        }
+        
+        
         
         return ResponseEntity.ok(results);
     }
@@ -64,8 +56,5 @@ public class SearchController {
         return "searchForm";
     }
 
-    // Method to save search history
-    private void saveSearchHistory(String userId, String query) {
-        searchHistoryService.saveSearchHistory(userId, query);
-    }
+    
 }
