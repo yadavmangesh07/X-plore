@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors'); 
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 
@@ -16,7 +18,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://mangesh8736:23605861@hotel.wpqiybc.mongodb.net/SearchEngine').then(() => {
+mongoose.connect(process.env.MONGO_DB_URL).then(() => {
   console.log('MongoDB connected');
 }).catch((error) => {
   console.error('MongoDB connection error:', error);
