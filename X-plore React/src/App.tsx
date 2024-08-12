@@ -8,7 +8,6 @@ import Quote from './@/components/magicui/Quote';
 import Footer from './@/components/magicui/Footer';
 import Globe from './@/components/magicui/globe';
 import Particles from './@/components/magicui/particles';
-import Dashboard from './@/components/Dashboard';
 import SearchBar from './@/components/magicui/SearchBar'; 
 import Response from './@/components/Responses';
 import SearchHistory from './@/components/SearchHistory';
@@ -53,14 +52,7 @@ function App() {
               </div>
             }
           />
-          <Route
-            path="/dashboard"
-            element={
-              <div className='h-screen flex justify-center mt-[3rem]'>
-                <Dashboard />
-              </div>
-            }
-          />
+          
           <Route
             path="/search"
             element={

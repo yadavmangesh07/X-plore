@@ -104,7 +104,7 @@ export default function Globe({
   return (
     <div
       className={cn(
-        "absolute inset-1 mx-auto aspect-[1/1] w-full max-w-[600px] mt-[65vh] sm:mt-[58vh] md:mt-[55vh] lg:mt-[62vh]  ",
+        "absolute inset-1 mx-auto aspect-[1/1] w-full max-w-[600px] mt-[65vh] sm:mt-[58vh] md:mt-[55vh] lg:mt-[62vh] z-[-10] ",
         className,
       )}
     >
