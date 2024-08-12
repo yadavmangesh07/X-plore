@@ -2,3 +2,6 @@
 .metadata/*
 X-plore React/.env
 X-plore React/History/.env
+X-plore React/History/node_modules
+X-plore React/History/package-lock.json
+X-plore React/History/package.json
