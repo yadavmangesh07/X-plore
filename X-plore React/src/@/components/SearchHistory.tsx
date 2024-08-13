@@ -1,41 +1,88 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const SearchHistory: React.FC = () => {
   const { user } = useUser();
   const [searchHistories, setSearchHistories] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
+  const [alertSeverity, setAlertSeverity] = useState<'success' | 'error'>('success');
+  const [alertMessage, setAlertMessage] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.id) {
-      setLoading(true);
-      fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user.id}`)
-        .then(async response => {
-          if (response.ok) {
-            try {
-              const data = await response.json();
-              setSearchHistories(data);
-            } catch (jsonError) {
-              setError('Error parsing search history data.');
-            }
-          } else {
-            setError('Failed to fetch search history.');
-          }
-        })
-        .catch(() => {
-          setError('Failed to fetch search history. Please try again later.');
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      fetchSearchHistory();
     }
   }, [user]);
 
+  const fetchSearchHistory = () => {
+    setLoading(true);
+    fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user?.id}`)
+      .then(async response => {
+        if (response.ok) {
+          try {
+            const data = await response.json();
+            setSearchHistories(data);
+          } catch (jsonError) {
+            setError('Error parsing search history data.');
+          }
+        } else {
+          setError('Failed to fetch search history.');
+        }
+      })
+      .catch(() => {
+        setError('Failed to fetch search history. Please try again later.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const handleClearHistory = () => {
+    if (user?.id) {
+      if (searchHistories.length === 0) {
+        setAlertSeverity('error');
+        setAlertMessage('Search history is already empty.');
+        setSnackbarOpen(true);
+      } else {
+        setLoading(true);
+        fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user.id}`, {
+          method: 'DELETE',
+        })
+          .then(response => {
+            if (response.ok) {
+              setSearchHistories([]); // Clear history
+              setAlertSeverity('success');
+              setAlertMessage('Search history cleared successfully.');
+            } else {
+              setAlertSeverity('error');
+              setAlertMessage('Failed to clear search history.');
+            }
+            setSnackbarOpen(true);
+          })
+          .catch(() => {
+            setAlertSeverity('error');
+            setAlertMessage('Failed to clear search history. Please try again later.');
+            setSnackbarOpen(true);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    }
+  };
+
   const handleGoBack = () => {
     navigate('/'); // Redirect to the homepage
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false); // Close Snackbar
   };
 
   return (
@@ -65,7 +112,9 @@ const SearchHistory: React.FC = () => {
           Search History
         </h2>
         
-        <span className="border border-gray-400 rounded-[.5rem] p-1.5 mb-[1rem] sm:p-2 text-xs sm:text-sm cursor-pointer bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text hover:text-white transition-colors tracking-wider">
+        <span 
+          onClick={handleClearHistory}
+          className="border border-gray-400 rounded-[.5rem] p-1.5 mb-[1rem] sm:p-2 text-xs sm:text-sm cursor-pointer bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text hover:text-white transition-colors tracking-wider">
           Clear History
         </span>
       </div>
@@ -104,6 +153,18 @@ const SearchHistory: React.FC = () => {
           )}
         </>
       )}
+
+      {/* Snackbar with Dynamic Alert */}
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert onClose={handleSnackbarClose} severity={alertSeverity}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
