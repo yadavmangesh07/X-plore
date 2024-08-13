@@ -37,9 +37,9 @@ export const Navbar = () => {
 
                 <div className={`sm:flex ${isOpen ? 'flex' : 'hidden'} flex-row sm:flex-row gap-2 sm:gap-4 pr-4 sm:pr-10 md:pr-20 lg:pr-40`}>
                     <SignedOut>
-                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
+                        <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light ">
                             <Link to="/sign-in">
-                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs hover:text-white">
                                     Login
                                 </span>
                             </Link>
@@ -47,7 +47,7 @@ export const Navbar = () => {
 
                         <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
                             <Link to="/sign-up">
-                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs hover:text-white">
                                     SignUp
                                 </span>
                             </Link>
@@ -60,7 +60,7 @@ export const Navbar = () => {
                         </div>
                         <div className="bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text text-lg tracking-widest font-light">
                             <Link to="/search-history">
-                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs">
+                                <span className="border border-gray-400 rounded-[.5rem] p-2 text-xs hover:text-white">
                                     History
                                 </span>
                             </Link>

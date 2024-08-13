@@ -61,11 +61,11 @@ const SearchHistory: React.FC = () => {
           </svg>
         </button>
         
-        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">
+        <h2 className="text-xl sm:text-2xl font-light mb-4 text-center tracking-wider ">
           Search History
         </h2>
         
-        <span className="border border-gray-400 rounded-[.5rem] p-1.5 mb-[1rem] sm:p-2 text-xs sm:text-sm cursor-pointer hover:bg-gray-200 transition-colors">
+        <span className="border border-gray-400 rounded-[.5rem] p-1.5 mb-[1rem] sm:p-2 text-xs sm:text-sm cursor-pointer bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text hover:text-white transition-colors tracking-wider">
           Clear History
         </span>
       </div>
@@ -81,21 +81,21 @@ const SearchHistory: React.FC = () => {
           {error && <p className="text-red-500">{error}</p>}
 
           {searchHistories.length === 0 ? (
-            <p className='mt-4 text-center'>Nothing to show.</p>
+            <p className='mt-4 text-center tracking-wider'>Nothing to show.</p>
           ) : (
             <div className="w-[70vw] overflow-x-auto rounded-xl border ">
               <table className="min-w-full bg-gray-800 border border-white rounded-xl shadow-lg bg-gradient-to-r from-neutral-300 to-stone-400 text-transparent bg-clip-text overflow-hidden">
                 <thead>
                   <tr className="bg-gray-700 text-white">
-                    <th className="py-2 px-4 border-b text-left">Searched</th>
-                    <th className="py-2 px-4 border-b text-left">Date</th>
+                    <th className="py-2 px-4 border-b text-left tracking-wider">Searched</th>
+                    <th className="py-2 px-4 border-b text-left tracking-wider">Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   {searchHistories.map(history => (
                     <tr key={history._id}>
-                      <td className="py-2 px-4 border-b">{history.query}</td>
-                      <td className="py-2 px-4 border-b">{new Date(history.timestamp).toLocaleString()}</td>
+                      <td className="py-2 px-4 border-b tracking-wider">{history.query}</td>
+                      <td className="py-2 px-4 border-b tracking-widest">{new Date(history.timestamp).toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>
