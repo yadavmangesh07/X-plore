@@ -13,7 +13,7 @@ export const Navbar = () => {
         <div className="sticky top-0 z-50 w-full">
             <nav className="h-[4rem] w-full border-b-[.1px] border-gray-600 bg-gray-900 flex justify-between items-center text-xl p-[1rem]">
                 <Link to="/">
-                    <div className="tracking-widest font-light w-full text-center sm:text-left pl-1 sm:pl-10 md:pl-20 lg:pl-40 bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text">
+                    <div className="tracking-widest font-light w-full text-center sm:text-left pl-1 sm:pl-10 md:pl-20 lg:pl-40 bg-gradient-to-r from-neutral-300 to-stone-400 inline-block text-transparent bg-clip-text hover:text-white">
                         X-plore.
                     </div>
                 </Link>
