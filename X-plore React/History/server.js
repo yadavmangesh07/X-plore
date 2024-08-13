@@ -10,7 +10,7 @@ const app = express();
 // Use cors middleware
 app.use(cors({
     origin: 'http://localhost:5173', // Replace with your frontend URL
-    methods: 'GET,POST',
+    methods: 'GET,POST,DELETE', // Add DELETE method here
     allowedHeaders: 'Content-Type',
 }));
 
@@ -55,6 +55,18 @@ app.get('/api/search-histories', async (req, res) => {
   } catch (error) {
     console.error('Error fetching search histories:', error);
     res.status(500).send('Error fetching search histories');
+  }
+});
+
+// Route to delete search histories
+app.delete('/api/search-histories', async (req, res) => {
+  const { userId } = req.query;
+  try {
+    await Search.deleteMany({ userId });
+    res.status(200).send('Search histories cleared');
+  } catch (error) {
+    console.error('Error clearing search histories:', error);
+    res.status(500).send('Error clearing search histories');
   }
 });
 
