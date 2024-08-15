@@ -19,7 +19,7 @@ import com.SearchEngine.app.entity.Resource;
 import com.SearchEngine.app.service.ResourceService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://xplore-2axl.onrender.com")
 @RequestMapping("/api/resources")
 public class ResourceController {
 
