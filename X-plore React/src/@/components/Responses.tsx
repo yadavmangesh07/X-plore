@@ -17,7 +17,7 @@ const Response: React.FC = () => {
   const navigate = useNavigate();
 
   const query = new URLSearchParams(location.search).get('q');
-  const backendAddress = 'http://localhost:8080' || import.meta.env.VITE_BACKEND_HOST_ADDRESS  ;
+  const backendAddress = import.meta.env.VITE_BACKEND_HOST_ADDRESS  ;
 
   useEffect(() => {
     if (query) {
