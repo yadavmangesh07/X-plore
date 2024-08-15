@@ -36,6 +36,7 @@ function App() {
               </>
             }
           />
+          {/* clerk */}
           <Route
             path="/sign-in"
             element={
