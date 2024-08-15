@@ -9,7 +9,7 @@ const app = express();
 
 // Use cors middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend URL
+    origin: 'https://xplore-2axl.onrender.com', // Replace with your frontend URL
     methods: 'GET,POST,DELETE', // Add DELETE method here
     allowedHeaders: 'Content-Type',
 }));
