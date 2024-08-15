@@ -8,5 +8,4 @@ import com.SearchEngine.app.entity.Resource;
 public interface ResourceRepository extends MongoRepository<Resource, String> {
     List<Resource> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
 
-    // List<Resource> findByTitleContainingOrDescriptionContaining(String query, String query2);
 }
