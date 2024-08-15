@@ -7,13 +7,15 @@ const SearchBar: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const navigate = useNavigate();
   const { user, isSignedIn } = useUser();
+  const HistoryBackend = import.meta.env.VITE_HISTORY_BACKEND || 'http://localhost:5001';
+ console.log(HistoryBackend);
 
   const handleSearch = async () => {
     if (isSignedIn && user) {
       if (query.trim()) {
         try {
           // Replace with your deployed backend service URL
-          await fetch('https://x-plore.onrender.com/api/search-histories', {
+          await fetch(`${HistoryBackend}/api/search-histories`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

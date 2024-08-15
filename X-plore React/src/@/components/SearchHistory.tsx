@@ -14,6 +14,9 @@ const SearchHistory: React.FC = () => {
   const [alertMessage, setAlertMessage] = useState<string>('');
   const navigate = useNavigate();
 
+  const HistoryBackend = import.meta.env.VITE_HISTORY_BACKEND  ||'http://localhost:5001'  ;
+
+
   useEffect(() => {
     if (user?.id) {
       fetchSearchHistory();
@@ -22,7 +25,7 @@ const SearchHistory: React.FC = () => {
 
   const fetchSearchHistory = () => {
     setLoading(true);
-    fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user?.id}`)
+    fetch(`${HistoryBackend}/api/search-histories?userId=${user?.id}`)
       .then(async response => {
         if (response.ok) {
           try {
@@ -51,7 +54,7 @@ const SearchHistory: React.FC = () => {
         setSnackbarOpen(true);
       } else {
         setLoading(true);
-        fetch(`https://x-plore.onrender.com/api/search-histories?userId=${user.id}`, {
+        fetch(`${HistoryBackend}/api/search-histories?userId=${user.id}`, {
           method: 'DELETE',
         })
           .then(response => {
