@@ -1,4 +1,5 @@
-import { SignIn, SignUp } from '@clerk/clerk-react';
+import  { useEffect } from 'react';
+import { SignIn, SignUp, useClerk } from '@clerk/clerk-react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -13,6 +14,21 @@ import Response from './@/components/Responses';
 import SearchHistory from './@/components/SearchHistory';
 
 function App() {
+  const { signOut } = useClerk();
+
+  useEffect(() => {
+    // Logic to determine if the user should be signed out
+    const handleServerRestart = () => {
+      // Example: Clear session on server restart
+      signOut();
+    };
+
+    // Call the function to handle the session on app load
+    handleServerRestart();
+
+    // Optional: Add any other logic or cleanup if needed
+  }, [signOut]);
+
   return (
     <BrowserRouter>
       <div
