@@ -1,0 +1,25 @@
+name: Maintain Commit Streak
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This runs the workflow daily at midnight (UTC)
+
+jobs:
+  commit-streak:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create or update a file
+        run: |
+          echo "Last updated on $(date)" > commit-streak.txt
+          git config user.name "Your GitHub Username"
+          git config user.email "your-email@example.com"
+          git add commit-streak.txt
+          git commit -m "Update commit streak [skip ci]"
+
+      - name: Push changes
+        run: |
+          git push
