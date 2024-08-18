@@ -2,7 +2,7 @@ name: Maintain Commit Streak
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # This runs the workflow daily at midnight (UTC)
+    - cron: '43 17 * * *'  # This runs the workflow daily at midnight (UTC)
 
 jobs:
   commit-streak:
