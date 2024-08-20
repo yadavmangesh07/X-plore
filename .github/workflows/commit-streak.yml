@@ -15,8 +15,8 @@ jobs:
       - name: Create or update a file
         run: |
           echo "Last updated on $(date)" > commit-streak.txt
-          git config user.name "Your GitHub Username"
-          git config user.email "your-email@example.com"
+          git config user.name yadavmangesh07
+          git config user.email mangeshyadav8736@gmail.com
           git add commit-streak.txt
           git commit -m "Update commit streak [skip ci]"
 
