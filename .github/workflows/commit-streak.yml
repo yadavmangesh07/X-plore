@@ -21,5 +21,8 @@ jobs:
           git commit -m "Update commit streak [skip ci]"
 
       - name: Push changes using PAT
+        env:
+          GIT_AUTH_TOKEN: ${{ secrets.PAT }}
         run: |
-          git push https://${{ secrets.PAT }}@github.com/yadavmangesh07/X-plore.git
+          git remote set-url origin https://${{ secrets.PAT }}@github.com/yadavmangesh07/X-plore.git
+          git push
