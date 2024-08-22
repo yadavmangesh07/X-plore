@@ -100,4 +100,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 - GitHub: [yadavmangesh07](https://github.com/yadavmangesh07)
-- LinkedIn: [Mangesh Yadav](https://www.linkedin.com/in/your-profile)
+- LinkedIn: [Mangesh Yadav](https://www.linkedin.com/in/mangesh-yadav-65a437237)
