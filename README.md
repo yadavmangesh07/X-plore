@@ -1,6 +1,6 @@
 # X-plore: A Comprehensive Search Engine
 
-![X-plore](homepage.png)
+![X-plore](Homepage.png)
 
 ## Overview
 
