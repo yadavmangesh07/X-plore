@@ -34,7 +34,7 @@ X-plore is a comprehensive search engine designed to provide accurate and releva
 1. Clone the repository:
     ```bash
     git clone https://github.com/yadavmangesh07/X-plore.git
-    cd X-plore/frontend
+    cd X-plore React
     ```
 
 2. Install dependencies:
