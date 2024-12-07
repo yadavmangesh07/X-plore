@@ -14,7 +14,7 @@ const SearchHistory: React.FC = () => {
   const [alertMessage, setAlertMessage] = useState<string>('');
   const navigate = useNavigate();
 
-  const HistoryBackend = import.meta.env.VITE_HISTORY_BACKEND ; 
+  const HistoryBackend =  'http://localhost:5001'; 
 
 
   useEffect(() => {

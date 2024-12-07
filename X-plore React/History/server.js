@@ -9,7 +9,8 @@ const app = express();
 
 // Use cors middleware
 app.use(cors({
-    origin: 'https://xplore-2axl.onrender.com', // Replace with your frontend URL
+    // origin: 'https://xplore-2axl.onrender.com', // Replace with your frontend URL
+    origin: 'http://localhost:5173', // Replace with your frontend URL
     methods: 'GET,POST,DELETE', // Add DELETE method here
     allowedHeaders: 'Content-Type',
 }));
@@ -71,5 +72,5 @@ app.delete('/api/search-histories', async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5001;
+const PORT =  5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
