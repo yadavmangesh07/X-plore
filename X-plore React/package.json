@@ -20,7 +20,7 @@
     "express": "^4.21.1",
     "framer-motion": "^11.3.8",
     "lucide-react": "^0.412.0",
-    "mongoose": "^8.5.2",
+    
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1",
