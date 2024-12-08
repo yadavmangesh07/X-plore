@@ -9,8 +9,10 @@ const app = express();
 
 // Use cors middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Replace with your frontend URL
-    methods: 'GET,POST,DELETE', // Add DELETE method here
+  origin: [
+    'https://x-plore.onrender.com',
+    'http://localhost:5173'
+],    methods: 'GET,POST,DELETE', // Add DELETE method here
     allowedHeaders: 'Content-Type',
 }));
 
