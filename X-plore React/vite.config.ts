@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://x-plore-production.up.railway.app', 
+        target: 'https://x-plore-backend.onrender.com', 
         changeOrigin: true,
         secure: false,
       },
