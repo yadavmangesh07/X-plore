@@ -12,7 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("https://x-plore.onrender.com","http://localhost:5173","https://x-plorehistory.onrender.com");
+                registry.addMapping("/**").allowedOrigins("https://x-plore.onrender.com","http://localhost:5173","https://x-plorehistory.onrender.com").allowedMethods("*")
+                .allowedHeaders("*");;
             }
         };
     }
