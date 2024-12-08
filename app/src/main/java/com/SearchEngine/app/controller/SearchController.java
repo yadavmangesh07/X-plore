@@ -16,7 +16,7 @@ import com.SearchEngine.app.entity.Resource;
 import com.SearchEngine.app.service.SearchService;
 
 @Controller
-@CrossOrigin(origins = {"http://localhost:5173", "https://x-plore.onrender.com"})
+@CrossOrigin(origins = {"http://localhost:5173","https://x-plorehistory.onrender.com", "https://x-plore.onrender.com"})
 @RequestMapping("/search")
 public class SearchController {
 

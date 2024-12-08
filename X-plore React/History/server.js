@@ -10,10 +10,11 @@ const app = express();
 // Use cors middleware
 app.use(cors({
   origin: [
-    'https://x-plore.onrender.com',
-    'http://localhost:5173'
-],    methods: 'GET,POST,DELETE', // Add DELETE method here
-    allowedHeaders: 'Content-Type',
+      // 'https://x-plore.onrender.com',
+      'http://localhost:5173'
+  ],
+  methods: ['GET', 'POST', 'DELETE'], // Array format is recommended
+  allowedHeaders: ['Content-Type', 'Authorization'], // Add all necessary headers
 }));
 
 // Use body-parser middleware
