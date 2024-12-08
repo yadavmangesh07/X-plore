@@ -7,7 +7,7 @@ const SearchBar: React.FC = () => {
   const [query, setQuery] = useState<string>('');
   const navigate = useNavigate();
   const { user, isSignedIn } = useUser();
-  const HistoryBackend ="http://localhost:5001" ;
+  const HistoryBackend =import.meta.env.VITE_HISTORY_BACKEND_HOST_ADDRESS || "http://localhost:5001" ;
 
 
   const handleSearch = async () => {
